@@ -1,13 +1,20 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from "@angular/core";
+import { DocumentService } from "./services/document.service/document.service.service";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  templateUrl: "./app.component.html",
+  styleUrl: "./app.component.css",
 })
 export class AppComponent {
-  title = 'barrhopp-app';
+  private service: DocumentService = inject(DocumentService);
+
+  ngOnInit(): void {
+    this.printCookie();
+  }
+
+  printCookie() {
+    console.log("🍪", this.service.myCookie);
+  }
 }
